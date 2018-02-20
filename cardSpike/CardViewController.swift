@@ -24,9 +24,11 @@ class CardViewController: UIViewController {
   }
 
   @objc
-  func swallowTapGesture(tap: UITapGestureRecognizer) {
-    // swallow the tap event so that it doesn't bubble up to the parent
-    // I'm sure there is a better way but ¯\_(ツ)_/¯
+  func cardTapGesture(tap: UITapGestureRecognizer) {
+    switch cardState {
+    case .context, .peek : animateCard(toState: .full)
+    default: ()
+    }
   }
 
   @objc
@@ -91,7 +93,7 @@ class CardViewController: UIViewController {
   func setupTouchEvents() {
     let panGesture = UIPanGestureRecognizer(target: self, action: #selector(didPanCard(pan:)))
     let tapDrawingGesture = UITapGestureRecognizer(target: self, action: #selector(didDismissCard(tap:)))
-    let tapCardHandler = UITapGestureRecognizer(target: self, action: #selector(swallowTapGesture(tap:)))
+    let tapCardHandler = UITapGestureRecognizer(target: self, action: #selector(cardTapGesture(tap:)))
 
     view.addGestureRecognizer(tapDrawingGesture)
     card.addGestureRecognizer(panGesture)
