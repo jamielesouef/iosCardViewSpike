@@ -12,8 +12,8 @@ struct CardSizes {
   let full: CGSize
 
   init(withFrame frame: CGRect = .zero) {
-    peek = CGSize(width: 0, height:frame.height * 0.35)
-    full = CGSize(width: 0, height:frame.height * 0.9)
+    peek = CGSize(width: 0, height: frame.height * 0.35)
+    full = CGSize(width: 0, height: (frame.height * 0.9 + 20))
   }
 }
 

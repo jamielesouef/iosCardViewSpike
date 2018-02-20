@@ -107,21 +107,23 @@ class CardViewController: UIViewController {
 private extension CardViewController {
 
   func animateCard(pan: UIPanGestureRecognizer) {
+
     switch pan.state {
     case .began:
-      let newState = cardState.next
-      animateCard(toState: newState)
-      runningAnimator.forEach { $0.pauseAnimation() }
+      animateCard(toState: cardState.next, pause: true)
     case .changed:
       let translation = pan.translation(in: card).y
-      let fraction = -translation / card.frame.height
-
+      let fraction = (animatingToState == .context ? translation : -translation) / card.frame.height
       runningAnimator.first?.fractionComplete = fraction
-    case .ended: ()
+    case .ended:
       runningAnimator.forEach { $0.continueAnimation(withTimingParameters: nil, durationFactor: 0) }
-
     default: ()
     }
+  }
+
+  func animateCard(toState state: CardStates, pause: Bool) {
+    animateCard(toState: state)
+    runningAnimator.forEach { $0.pauseAnimation() }
   }
 
   func animateCard(toState state: CardStates) {
