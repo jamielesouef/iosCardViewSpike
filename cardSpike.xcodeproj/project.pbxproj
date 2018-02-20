@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		73FD2454E061102CA4D991F9 /* CardStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FD2CFC6F42F346DBBEC086 /* CardStates.swift */; };
 		73FD26B803668026C201ABC7 /* CardViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FD2E72FEEC8F1EC6C0FD41 /* CardViewFactory.swift */; };
+		73FD287DE488C56876512224 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FD2559C1D6D8DAF74C5BA5 /* CardViewController.swift */; };
 		73FD29BE7F7209A0C53BD97D /* AnimationStateFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FD2A6730DD316CAE878341 /* AnimationStateFactory.swift */; };
 		90A97FA22036837C006D9D56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A97FA12036837C006D9D56 /* AppDelegate.swift */; };
 		90A97FA42036837C006D9D56 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A97FA32036837C006D9D56 /* ViewController.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		73FD2559C1D6D8DAF74C5BA5 /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		73FD2A6730DD316CAE878341 /* AnimationStateFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationStateFactory.swift; sourceTree = "<group>"; };
 		73FD2CFC6F42F346DBBEC086 /* CardStates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardStates.swift; sourceTree = "<group>"; };
 		73FD2E72FEEC8F1EC6C0FD41 /* CardViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewFactory.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				73FD2CFC6F42F346DBBEC086 /* CardStates.swift */,
 				73FD2A6730DD316CAE878341 /* AnimationStateFactory.swift */,
 				73FD2E72FEEC8F1EC6C0FD41 /* CardViewFactory.swift */,
+				73FD2559C1D6D8DAF74C5BA5 /* CardViewController.swift */,
 			);
 			path = cardSpike;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				73FD2454E061102CA4D991F9 /* CardStates.swift in Sources */,
 				73FD29BE7F7209A0C53BD97D /* AnimationStateFactory.swift in Sources */,
 				73FD26B803668026C201ABC7 /* CardViewFactory.swift in Sources */,
+				73FD287DE488C56876512224 /* CardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

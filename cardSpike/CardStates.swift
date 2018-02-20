@@ -1,3 +1,5 @@
+import Foundation
+import CoreGraphics
 
 enum CardStates {
   case dismissed, peek, full, context

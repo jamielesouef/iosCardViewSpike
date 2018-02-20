@@ -1,6 +1,9 @@
 import UIKit
 
 struct CardViewFactory {
+
+  static var cornerRadius:CGFloat = 20
+
   static var cardHandle: UIView = {
     let view = UIView()
     view.backgroundColor = UIColor.lightGray
@@ -12,7 +15,7 @@ struct CardViewFactory {
   static var card: UIView = {
     let view = UIView()
     view.backgroundColor = .white
-    view.layer.cornerRadius = 20
+    view.layer.cornerRadius = CardViewFactory.cornerRadius
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
@@ -20,7 +23,7 @@ struct CardViewFactory {
   static var cardContainerView: UIView = {
     let view = UIView()
     view.backgroundColor = .white
-    view.layer.cornerRadius = 20
+    view.layer.cornerRadius = CardViewFactory.cornerRadius
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
