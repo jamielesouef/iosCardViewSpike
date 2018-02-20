@@ -7,12 +7,9 @@ class CardViewController: UIViewController {
   private lazy var cardContainerView: UIView = CardViewFactory.cardContainerView
 
   private var animationSpeed: TimeInterval = 0.5
-  private var bottomOffset: CGFloat = 20
   private var cardState: CardStates = .dismissed
   private var bottomConstraint = NSLayoutConstraint()
   private var runningAnimator: [UIViewPropertyAnimator] = []
-  private var cardPeekHeight: CGFloat = 0
-  private var fullHeight: CGFloat = 0
   private var animatingToState: CardStates = .dismissed
   private var cardSizes: CardSizes = CardSizes()
 
