@@ -26,7 +26,7 @@ class CardViewController: UIViewController {
   @objc
   func cardTapGesture(tap: UITapGestureRecognizer) {
     switch cardState {
-    case .context, .peek : animateCard(toState: .full)
+    case .context, .peek: animateCard(toState: .full)
     default: ()
     }
   }
@@ -108,29 +108,8 @@ class CardViewController: UIViewController {
 
 private extension CardViewController {
 
-  func animateCard(pan: UIPanGestureRecognizer) {
-
-    switch pan.state {
-    case .began:
-      animateCard(toState: cardState.next, pause: true)
-    case .changed:
-      let translation = pan.translation(in: card).y
-      let fraction = (animatingToState == .context ? translation : -translation) / card.frame.height
-      runningAnimator.first?.fractionComplete = fraction
-    case .ended:
-      runningAnimator.forEach { $0.continueAnimation(withTimingParameters: nil, durationFactor: 0) }
-    default: ()
-    }
-  }
-
-  func animateCard(toState state: CardStates, pause: Bool) {
-    animateCard(toState: state)
-    runningAnimator.forEach { $0.pauseAnimation() }
-  }
-
-  func animateCard(toState state: CardStates) {
+  func animateCard(toState state: CardStates, thenPause pause: Bool = false) {
     if state != animatingToState {
-      runningAnimator.forEach { $0.stopAnimation(true) }
       runningAnimator.removeAll()
     }
 
@@ -158,7 +137,21 @@ private extension CardViewController {
       self.runningAnimator.removeAll()
     }
 
-    animator.startAnimation(afterDelay: 0)
+    if !pause { animator.startAnimation(afterDelay: 0) }
     self.runningAnimator.append(animator)
+  }
+
+  func animateCard(pan: UIPanGestureRecognizer) {
+    let translation = pan.translation(in: view).y
+    switch pan.state {
+    case .began:
+      animateCard(toState: cardState.next, thenPause: true)
+    case .changed:
+      let fraction = (animatingToState == .context ? translation : -translation) / view.bounds.height
+      runningAnimator.first?.fractionComplete = fraction
+    case .ended:
+      runningAnimator.first?.continueAnimation(withTimingParameters: nil, durationFactor: 0)
+    default: ()
+    }
   }
 }
