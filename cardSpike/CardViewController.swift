@@ -10,7 +10,6 @@ class CardViewController: UIViewController {
   private var cardState: CardStates = .dismissed
   private var bottomConstraint = NSLayoutConstraint()
   private var runningAnimator: UIViewPropertyAnimator?
-  private var animatingToState: CardStates = .dismissed
   private var cardSizes: CardSizes = CardSizes()
 
   var contentView: UIView?
@@ -95,6 +94,9 @@ class CardViewController: UIViewController {
     let tapDrawingGesture = UITapGestureRecognizer(target: self, action: #selector(didDismissCard(tap:)))
     let tapCardHandler = UITapGestureRecognizer(target: self, action: #selector(cardTapGesture(tap:)))
 
+    panGesture.delaysTouchesBegan = false
+    panGesture.delaysTouchesEnded = false
+
     view.addGestureRecognizer(tapDrawingGesture)
     card.addGestureRecognizer(panGesture)
     card.addGestureRecognizer(tapCardHandler)
@@ -109,13 +111,6 @@ class CardViewController: UIViewController {
 private extension CardViewController {
 
   func animateCard(toState state: CardStates, thenPause pause: Bool = false) {
-    if state != animatingToState {
-      runningAnimator = nil
-    }
-
-    animatingToState = state
-
-    guard runningAnimator == nil else { return }
 
     cardState = state
 
@@ -142,12 +137,12 @@ private extension CardViewController {
   }
 
   func animateCard(pan: UIPanGestureRecognizer) {
-    let translation = pan.translation(in: view).y
     switch pan.state {
     case .began:
       animateCard(toState: cardState.next, thenPause: true)
     case .changed:
-      let fraction = (animatingToState == .context ? translation : -translation) / view.bounds.height
+      let translation = pan.translation(in: view).y
+      let fraction = (cardState == .context ? translation : -translation) / view.bounds.height
       runningAnimator?.fractionComplete = fraction
     case .ended:
       runningAnimator?.continueAnimation(withTimingParameters: nil, durationFactor: 0)

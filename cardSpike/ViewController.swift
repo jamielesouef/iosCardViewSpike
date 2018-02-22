@@ -3,7 +3,6 @@ import UIKit
 class ViewController: CardViewController {
 
   private lazy var pin: UIButton = CardViewFactory.pin
-
   override func viewDidLoad() {
     view.addSubview(pin)
     pin.addTarget(self, action: #selector(didSelectPin(sender:)), for: .touchUpInside)
